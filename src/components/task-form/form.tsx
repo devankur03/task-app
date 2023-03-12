@@ -12,6 +12,7 @@ import {
     changeTaskPriority,
     changeTaskStatus,
 } from '../../features/task-form/taskFormSlice';
+import { PRIORITY_OPTIONS, STATUS_OPTIONS } from '../../constants/staticData';
 
 const TaskForm: FC = (): ReactElement => {
     const dispatch = useDispatch();
@@ -35,21 +36,14 @@ const TaskForm: FC = (): ReactElement => {
                         <TaskSelectBox
                             labelName={'Status'}
                             selectedValue={''}
-                            menuOptions={[
-                                { id: 'InProgress', name: 'In Progress' },
-                                { id: 'Complete', name: 'Complete' },
-                            ]}
+                            menuOptions={STATUS_OPTIONS}
                             onSelectHandler={onStatusChangeHandler}
                             id={'Status'}
                         />
                         <TaskSelectBox
                             labelName={'Priority'}
                             selectedValue={''}
-                            menuOptions={[
-                                { id: 'low', name: 'Low' },
-                                { id: 'High', name: 'High' },
-                                { id: 'Medium', name: 'Medium' },
-                            ]}
+                            menuOptions={PRIORITY_OPTIONS}
                             onSelectHandler={onPriorityChangeHandler}
                             id={'Priority'}
                         />
