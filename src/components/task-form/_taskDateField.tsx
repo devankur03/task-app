@@ -2,14 +2,17 @@ import { FC, ReactElement } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { changeDueDate } from '../../features/task-form/taskFormSlice';
 
-const TaskDateField: FC = (): ReactElement => {
+const TaskDateField: FC = (props:any): ReactElement => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
                 label="Due Date"
                 // value={value}
-                // onChange={(newValue) => setValue(newValue)}
+             onChange={(newValue) =>
+                 props.dispatch(changeDueDate(newValue))
+            }
             />
         </LocalizationProvider>
     );

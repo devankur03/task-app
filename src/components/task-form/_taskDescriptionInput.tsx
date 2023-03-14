@@ -1,6 +1,7 @@
 import { FC, ReactElement } from 'react';
 import TextField from '@mui/material/TextField';
-const TaskDescription: FC = (): ReactElement => {
+import { changeTaskDescription } from '../../features/task-form/taskFormSlice';
+const TaskDescription: FC = (props:any): ReactElement => {
     return (
         <TextField
             id="taskDescription"
@@ -10,6 +11,10 @@ const TaskDescription: FC = (): ReactElement => {
             multiline
             rows={5}
             size="small"
+            onBlur={(e)=>{
+                props.dispatch(changeTaskDescription(e.target.value))
+
+            }}
         />
     );
 };
