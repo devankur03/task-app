@@ -21,10 +21,11 @@ export const taskFormSlice = createSlice({
     initialState,
     reducers: {
         changeTaskName: (state,action) => {
-            state.taskName += action.payload;
+            console.log(state.taskName)
+            state.taskName = action.payload;
         },
         changeTaskDescription: (state,action) => {
-            state.taskDescription += action.payload
+            state.taskDescription = action.payload
         },
         changeDueDate: (state,action) => {
             state.dueDate = action.payload

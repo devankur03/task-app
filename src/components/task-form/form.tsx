@@ -7,15 +7,17 @@ import TaskDescription from './_taskDescriptionInput';
 import Typography from '@mui/material/Typography';
 import TaskDateField from './_taskDateField';
 import TaskSelectBox from './_taskSelect';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     changeTaskPriority,
     changeTaskStatus,
 } from '../../features/task-form/taskFormSlice';
 import { PRIORITY_OPTIONS, STATUS_OPTIONS } from '../../constants/staticData';
+import { RootState } from '../../store';
 
 const TaskForm: FC = (): ReactElement => {
     const dispatch = useDispatch();
+    const {taskName, taskDescription, taskPriority, taskStatus, dueDate} = useSelector((state:RootState)=>state.taskFormValues)
 
     const onPriorityChangeHandler = (e: any): void => {
         dispatch(changeTaskPriority(e.target.value));
@@ -24,25 +26,29 @@ const TaskForm: FC = (): ReactElement => {
         dispatch(changeTaskStatus(e.target.value));
     };
 
+    const createTaskHandler = () =>{
+        console.log({taskName, taskDescription, taskPriority, taskStatus, dueDate} )
+    }
+
     return (
         <Box sx={{ width: '100%', margin: '20px', padding: '20px' }}>
             <form>
                 <Stack spacing={2}>
                     <Typography variant="h6">Create A Task</Typography>
-                    <TaskNameInputField dispatch={dispatch} />
-                    <TaskDescription dispatch={dispatch} />
-                    <TaskDateField dispatch={dispatch} />
+                    <TaskNameInputField dispatch={dispatch}  data={taskName} />
+                    <TaskDescription dispatch={dispatch}  data={taskDescription}/>
+                    <TaskDateField dispatch={dispatch} data={dueDate}/>
                     <Stack spacing={2} direction="row">
                         <TaskSelectBox
                             labelName={'Status'}
-                            selectedValue={''}
+                            selectedValue={taskStatus}
                             menuOptions={STATUS_OPTIONS}
                             onSelectHandler={onStatusChangeHandler}
                             id={'Status'}
                         />
                         <TaskSelectBox
                             labelName={'Priority'}
-                            selectedValue={''}
+                            selectedValue={taskPriority}
                             menuOptions={PRIORITY_OPTIONS}
                             onSelectHandler={onPriorityChangeHandler}
                             id={'Priority'}
@@ -55,7 +61,8 @@ const TaskForm: FC = (): ReactElement => {
                             background: 'rgb(103, 58, 183)',
                         }}
                         variant="contained"
-                    >
+                        onClick={()=>createTaskHandler()}
+                   >
                         Create Task
                     </Button>
                 </Stack>
