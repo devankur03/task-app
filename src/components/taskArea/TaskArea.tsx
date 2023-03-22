@@ -40,13 +40,15 @@ const TaskArea: FC = (): ReactElement => {
                 </Grid>
             </Grid>
 
-            <Container maxWidth="md">
+            <Container maxWidth="md" sx={{height: "60vh",overflowY:"auto"}}>
                 <Box
                     display={'flex'}
                     flexDirection="column"
                     alignItems={'center'}
                     sx={{ gridGap: '2rem' }}
                 >
+                    <TaskDetails />
+                    <TaskDetails />
                     <TaskDetails />
                     <TaskDetails />
                 </Box>
