@@ -1,6 +1,7 @@
 import { FC, ReactElement } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { customTheme } from '../../theme/customTheme';
+import Container from '@mui/material/Container';
 import dayjs from 'dayjs';
 import TaskCounter from './task-counter/taskCounter';
 import TaskDetails from './task-details/taskDetails';
@@ -38,18 +39,18 @@ const TaskArea: FC = (): ReactElement => {
                     <TaskCounter status={Status.completed} count={2} />
                 </Grid>
             </Grid>
-            <Grid
-                item
-                display={'flex'}
-                flexDirection="column"
-                md={8}
-                xs={10}
-                alignItems="center"
-                justifyContent={"space-between"}
-            >
-               
-                <TaskDetails /> <TaskDetails />
-            </Grid>
+
+            <Container maxWidth="md">
+                <Box
+                    display={'flex'}
+                    flexDirection="column"
+                    alignItems={'center'}
+                    sx={{ gridGap: '2rem' }}
+                >
+                    <TaskDetails />
+                    <TaskDetails />
+                </Box>
+            </Container>
         </Grid>
     );
 };
