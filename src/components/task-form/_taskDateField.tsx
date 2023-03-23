@@ -9,7 +9,8 @@ const TaskDateField: FC = (props:any): ReactElement => {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
                 label="Due Date"
-                // value={value}
+                defaultValue={null}
+              //  value={props?.data || null}
              onChange={(newValue) =>
                  props.dispatch(changeDueDate(newValue))
             }

@@ -11,7 +11,8 @@ const TaskDescription: FC = (props:any): ReactElement => {
             multiline
             rows={5}
             size="small"
-            onBlur={(e)=>{
+            value={props?.data}
+            onChange={(e)=>{
                 props.dispatch(changeTaskDescription(e.target.value))
 
             }}

@@ -1,0 +1,14 @@
+version: '1.0'
+
+services:
+  app:
+    container_name: "task-app-react-container"
+    image: docker-task-app
+    build:
+      context: .
+    ports:
+      - 8080:80
+      - 5000
+      - 5173
+ 
+    

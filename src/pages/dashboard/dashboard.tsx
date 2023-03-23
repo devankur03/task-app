@@ -6,7 +6,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 const Dashboard: FC = (): ReactElement => {
     console.log(customTheme);
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} >
             <TaskArea />
             <Sidebar />
         </Grid>
