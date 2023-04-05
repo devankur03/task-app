@@ -4,16 +4,17 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { changeDueDate } from '../../features/task-form/taskFormSlice';
 
-const TaskDateField: FC = (props:any): ReactElement => {
+const TaskDateField: FC = (props: any): ReactElement => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
                 label="Due Date"
                 defaultValue={null}
-              //  value={props?.data || null}
-             onChange={(newValue) =>
-                 props.dispatch(changeDueDate(newValue))
-            }
+                //  value={props?.data || null}
+                onChange={(newValue) => {
+                    console.log(newValue);
+                    props.dispatch(changeDueDate(newValue));
+                }}
             />
         </LocalizationProvider>
     );

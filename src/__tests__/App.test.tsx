@@ -30,6 +30,23 @@ describe('App loading ', async () => {
             taskStatus: '',
             dueDate: '',
         },
+        taskListValues: {
+            tasks: [
+                {
+                    title: 'test-title',
+                    description: 'test-description',
+                    date: '2022-03-03',
+                    status: 'todo',
+                    priority: 'low',
+                    id: '121323',
+                },
+            ],
+            taskStatus: {
+                todo: '1',
+                inProgress: '1',
+                completed: '1',
+            },
+        },
     };
 
     const store = mockStore(initialState);
@@ -47,13 +64,30 @@ describe('App loading ', async () => {
     });
 
     it('Should render the page correctly', async () => {
-        mockSelector.mockReturnValue({
+        const spy = vi.spyOn(reactRedux, 'useSelector');
+        spy.mockReturnValue({
             taskFormValues: {
                 taskName: '',
                 taskDescription: '',
                 taskPriority: '',
                 taskStatus: '',
                 dueDate: '',
+            },
+
+            tasks: [
+                {
+                    title: 'test-title',
+                    description: 'test-description',
+                    date: '2022-03-03',
+                    status: 'todo',
+                    priority: 'low',
+                    id: '121323',
+                },
+            ],
+            taskStatus: {
+                todo: '1',
+                inProgress: '1',
+                completed: '1',
             },
         });
         renderApp();
