@@ -4,10 +4,6 @@ import { Grid } from '@mui/material';
 import TaskArea from '../../components/taskArea/TaskArea';
 import Sidebar from '../../components/sidebar/Sidebar';
 const Dashboard: FC = (): ReactElement => {
-    console.log(customTheme);
-    useEffect(() => {
-        console.log('hello');
-    }, []);
     return (
         <Grid container spacing={2}>
             <TaskArea />
