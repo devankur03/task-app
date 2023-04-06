@@ -35,14 +35,6 @@ const TaskForm: FC = (): ReactElement => {
     };
 
     const createTaskHandler = async () => {
-        console.log({
-            title: taskName,
-            description: taskDescription,
-            priority: taskPriority,
-            status: taskStatus,
-            date: dayjs(dueDate).format('yyyy-mm-dd'),
-        });
-
         try {
             const response = await createNewTask({
                 title: taskName,
@@ -51,7 +43,6 @@ const TaskForm: FC = (): ReactElement => {
                 status: taskStatus,
                 date: dayjs(dueDate).format('YYYY-MM-DD'),
             });
-            console.log(response);
 
             if (response.status === 201) {
                 setIsSuccess(true);

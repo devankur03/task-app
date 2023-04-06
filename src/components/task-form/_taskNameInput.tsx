@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { changeTaskName } from '../../features/task-form/taskFormSlice';
 
 const TaskNameInputField: FC = (props: any): ReactElement => {
-    console.log(props)
+    console.log(props);
     return (
         <TextField
             id="taskName"
@@ -13,9 +13,8 @@ const TaskNameInputField: FC = (props: any): ReactElement => {
             size="small"
             data-testid="taskName"
             value={props?.data}
-            onChange={(e)=>{
-                console.log(e.target.value)
-                props.dispatch(changeTaskName(e.target.value))
+            onChange={(e) => {
+                props.dispatch(changeTaskName(e.target.value));
             }}
         />
     );

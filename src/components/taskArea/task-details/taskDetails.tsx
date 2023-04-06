@@ -40,8 +40,6 @@ const TaskDetails: FC<PropsDetauls> = ({
     const updateTaskStatusInfo = (status: string, isChanged: boolean) => {
         updateTask(taskData.id, { status })
             .then((res: any) => {
-                console.log(res);
-
                 setTaskSwitchStatus(isChanged);
                 dispatch(updateTaskInfo(res.data));
             })
@@ -51,8 +49,6 @@ const TaskDetails: FC<PropsDetauls> = ({
     };
 
     const updateTaskStatusHandler = (e: any) => {
-        console.log(e.target.checked);
-
         let status = e.target.checked ? 'inProgress' : 'todo';
         updateTaskStatusInfo(status, e.target.checked);
     };

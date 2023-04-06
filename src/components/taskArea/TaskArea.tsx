@@ -35,11 +35,8 @@ const TaskArea: FC = (): ReactElement => {
         },
     );
     useEffect(() => {
-        console.log('LOggin data', tasks, taskStatus);
         getAllTasks()
             .then((res: any) => {
-                console.log(res.data);
-
                 dispatch(setTasks(res.data.tasks));
                 dispatch(setTasksStatus(res.data.statusCounts));
             })
@@ -49,7 +46,6 @@ const TaskArea: FC = (): ReactElement => {
     }, []);
 
     const onSelectStatus = (type: string): void => {
-        console.log(type);
         if (filterStatus === type) {
             dispatch(filterTasks(''));
         } else {
