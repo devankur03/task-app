@@ -34,7 +34,6 @@ export const taskListSlice = createSlice({
     initialState,
     reducers: {
         setTasks: (state, action) => {
-            console.log(action.payload, '==========>');
             state.tasks = action.payload;
         },
         setTasksStatus: (state, action) => {
