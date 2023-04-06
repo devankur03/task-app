@@ -19,6 +19,7 @@ import { PRIORITY_OPTIONS, STATUS_OPTIONS } from '../../constants/staticData';
 import { RootState } from '../../store';
 import { createNewTask } from '../../api';
 import dayjs from 'dayjs';
+import { addNewTask } from '../../features/task-list/taskListSlice';
 
 const TaskForm: FC = (): ReactElement => {
     const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const TaskForm: FC = (): ReactElement => {
 
             if (response.status === 201) {
                 setIsSuccess(true);
+                dispatch(addNewTask(response.data));
                 dispatch(resetTaskForm({}));
                 setTimeout(() => setIsSuccess(false), 4000);
             }
@@ -101,9 +103,7 @@ const TaskForm: FC = (): ReactElement => {
                         Create Task
                     </Button>
                     {isSuccess && (
-                        <Alert severity="success">
-                            This is a success alert — check it out!
-                        </Alert>
+                        <Alert severity="success">Successfully Created !</Alert>
                     )}
                 </Stack>
             </form>

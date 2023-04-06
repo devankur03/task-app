@@ -8,4 +8,6 @@ export type taskStatusTypes =
 export interface ItaskCounter {
     status: taskStatusTypes;
     count: string;
+    onClickHandler: Function;
+    isActive: boolean;
 }
