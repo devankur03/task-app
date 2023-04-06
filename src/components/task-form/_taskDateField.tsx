@@ -12,7 +12,6 @@ const TaskDateField: FC = (props: any): ReactElement => {
                 defaultValue={null}
                 //  value={props?.data || null}
                 onChange={(newValue) => {
-                    console.log(newValue);
                     props.dispatch(changeDueDate(newValue));
                 }}
             />

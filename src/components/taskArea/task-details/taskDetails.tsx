@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,16 +10,21 @@ import Chip from '@mui/material/Chip';
 import Switch from '@mui/material/Switch';
 import Container from '@mui/material/Container';
 import dayjs from 'dayjs';
-import { TaskListDetails } from '../../../features/task-list/taskListSlice';
+import {
+    TaskListDetails,
+    updateTaskInfo,
+} from '../../../features/task-list/taskListSlice';
+import { updateTask } from '../../../api';
+import { useDispatch } from 'react-redux';
 
 type PropsDetauls = {
     taskData: TaskListDetails;
 };
 
 const getBorderColorByStatus = (status: string) => {
-    if (status === 'todo') {
+    if (status?.toLowerCase() === 'todo') {
         return '1px solid #ff3232';
-    } else if (status === 'inProgress') {
+    } else if (status?.toLowerCase() === 'inprogress') {
         return '1px solid #ffa500';
     } else {
         return '1px solid #76ff7a';
@@ -29,6 +34,33 @@ const getBorderColorByStatus = (status: string) => {
 const TaskDetails: FC<PropsDetauls> = ({
     taskData,
 }: PropsDetauls): ReactElement => {
+    const [taskSwitchStatus, setTaskSwitchStatus] = useState(false);
+    const dispatch = useDispatch();
+
+    const updateTaskStatusInfo = (status: string, isChanged: boolean) => {
+        updateTask(taskData.id, { status })
+            .then((res: any) => {
+                setTaskSwitchStatus(isChanged);
+                dispatch(updateTaskInfo(res.data));
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
+    const updateTaskStatusHandler = (e: any) => {
+        let status = e.target.checked ? 'inProgress' : 'todo';
+        updateTaskStatusInfo(status, e.target.checked);
+    };
+
+    useEffect(() => {
+        if (taskData.status?.toLowerCase() === 'todo') {
+            setTaskSwitchStatus(false);
+        } else {
+            setTaskSwitchStatus(true);
+        }
+    }, [taskData]);
+
     return (
         <Card
             variant="outlined"
@@ -62,12 +94,19 @@ const TaskDetails: FC<PropsDetauls> = ({
                     <Box display={'flex'} justifyContent="space-between" mt={3}>
                         <Switch
                             {...{ inputProps: { 'aria-label': 'Switch demo' } }}
-                            defaultChecked
+                            checked={taskSwitchStatus}
+                            disabled={
+                                taskData.status?.toLowerCase() === 'completed'
+                            }
+                            onChange={(e) => updateTaskStatusHandler(e)}
                         />
                         <Button
                             disabled={taskData.status === 'completed'}
                             variant="contained"
                             size="medium"
+                            onClick={() => {
+                                updateTaskStatusInfo('completed', true);
+                            }}
                         >
                             Mark Complete
                         </Button>

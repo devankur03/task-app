@@ -21,7 +21,6 @@ export const taskFormSlice = createSlice({
     initialState,
     reducers: {
         changeTaskName: (state, action) => {
-            console.log(state.taskName);
             state.taskName = action.payload;
         },
         changeTaskDescription: (state, action) => {
