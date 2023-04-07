@@ -44,7 +44,7 @@ const TaskForm: FC = (): ReactElement => {
                 date: dayjs(dueDate).format('YYYY-MM-DD'),
             });
 
-            if (response.status === 201) {
+            if (response.data) {
                 setIsSuccess(true);
                 dispatch(addNewTask(response.data));
                 dispatch(resetTaskForm({}));
@@ -84,6 +84,7 @@ const TaskForm: FC = (): ReactElement => {
                     </Stack>
 
                     <Button
+                        id="createTask"
                         sx={{
                             color: '#FFFFFF',
                             background: 'rgb(103, 58, 183)',
