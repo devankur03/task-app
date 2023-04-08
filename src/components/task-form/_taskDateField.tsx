@@ -8,6 +8,7 @@ const TaskDateField: FC = (props: any): ReactElement => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
+                className="dueDate"
                 label="Due Date"
                 defaultValue={null}
                 //  value={props?.data || null}

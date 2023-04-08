@@ -34,6 +34,7 @@ const TaskArea: FC = (): ReactElement => {
             };
         },
     );
+
     useEffect(() => {
         getAllTasks()
             .then((res: any) => {
@@ -111,6 +112,7 @@ const TaskArea: FC = (): ReactElement => {
                 </Grid>
 
                 <Container
+                    className="tasklist--container"
                     maxWidth="md"
                     sx={{ height: '60vh', overflowY: 'auto' }}
                 >

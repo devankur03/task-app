@@ -1,0 +1,69 @@
+{
+    "statusCounts": { "completed": "5", "todo": "2", "inProgress": "1" },
+    "tasks": [
+        {
+            "id": "037effd0-5b06-480f-87b9-549b256c0b38",
+            "title": "Automation test using Selenium",
+            "description": "Automation test using Selenium",
+            "date": "2023-04-14",
+            "status": "completed",
+            "priority": "Low"
+        },
+        {
+            "id": "290f6822-b836-4d50-9ac0-90e7bebdf220",
+            "title": "Testing Completed Task",
+            "description": "Testing Completed Task",
+            "date": "2023-04-30",
+            "status": "completed",
+            "priority": "High"
+        },
+        {
+            "id": "703bfc41-0100-423c-b477-632b0f65966e",
+            "title": "Again Complete test",
+            "description": "Again Complete test",
+            "date": "2023-04-05",
+            "status": "completed",
+            "priority": "Medium"
+        },
+        {
+            "id": "ba5b38c3-0321-48a2-86c3-151415315601",
+            "title": "Testing Stuffs",
+            "description": "Testing Stuffs",
+            "date": "2023-04-28",
+            "status": "completed",
+            "priority": "Low"
+        },
+        {
+            "id": "c50cf1de-a6bf-4883-bd63-362491cad84a",
+            "title": "Create UI Using React ",
+            "description": "Create task dashboard screen using react & TDD",
+            "date": "2023-04-12",
+            "status": "completed",
+            "priority": "Medium"
+        },
+        {
+            "id": "ce946cf1-1323-4bbf-97d2-3866561de7cc",
+            "title": "Api Integration using axios",
+            "description": "Api Integration using axios",
+            "date": "2023-04-13",
+            "status": "todo",
+            "priority": "High"
+        },
+        {
+            "id": "d52532b8-03a0-4537-9825-cd563b994500",
+            "title": "Todo testing",
+            "description": "Todo testing",
+            "date": "2023-04-20",
+            "status": "inProgress",
+            "priority": "Low"
+        },
+        {
+            "id": "db4335b8-6ba3-4cff-8055-1ae453c6b65c",
+            "title": "MyTaskTodo Testing",
+            "description": "MyTaskTodo Testing",
+            "date": "2023-04-18",
+            "status": "todo",
+            "priority": "Low"
+        }
+    ]
+}

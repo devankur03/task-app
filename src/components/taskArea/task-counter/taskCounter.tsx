@@ -8,7 +8,7 @@ import { ItaskCounter } from '../interfaces/ItaskCounter';
 const TaskCounter: FC<ItaskCounter> = (props): ReactElement => {
     const { status, count, onClickHandler, isActive } = props;
     return (
-        <Box>
+        <Box className={`status-${status}`}>
             <Avatar
                 sx={{
                     background: isActive ? StatusColor[status] : 'transparent',
