@@ -3,26 +3,26 @@ pipeline {
      stages {
          stage("Unit Tests") {
             steps {
-                sh "sudo npm install"
-                sh "sudo npm run test"
+                sh " npm install"
+                sh " npm run test"
             }
         }
         stage("End2End Tests") {
             steps {
-                sh "sudo npm install"
-                sh "sudo npm run e2e:ci"
+                sh " npm install"
+                sh " npm run e2e:ci"
             }
         }
         stage("Build") {
             steps {
-                sh "sudo npm install"
-                sh "sudo npm run build"
+                sh " npm install"
+                sh " npm run build"
             }
         }
         stage("Deploy") {
             steps {
-                sh "sudo rm -rf /var/www/jenkins-react-app"
-                sh "sudo cp -r ${WORKSPACE}/build/ /var/www/task-app/"
+                sh " rm -rf /var/www/jenkins-react-app"
+                sh " cp -r ${WORKSPACE}/build/ /var/www/task-app/"
             }
         }
     }
