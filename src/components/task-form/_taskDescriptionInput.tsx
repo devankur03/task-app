@@ -1,7 +1,14 @@
 import { FC, ReactElement } from 'react';
 import TextField from '@mui/material/TextField';
 import { changeTaskDescription } from '../../features/task-form/taskFormSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
 const TaskDescription: FC = (props:any): ReactElement => {
+    const dispatch = useDispatch();
+    const { taskDescription } = useSelector(
+        (state: RootState) => state.taskFormValues,
+    );
+
     return (
         <TextField
             id="taskDescription"
@@ -11,9 +18,9 @@ const TaskDescription: FC = (props:any): ReactElement => {
             multiline
             rows={5}
             size="small"
-            value={props?.data}
+            value={taskDescription}
             onChange={(e)=>{
-                props.dispatch(changeTaskDescription(e.target.value))
+                dispatch(changeTaskDescription(e.target.value))
 
             }}
         />
