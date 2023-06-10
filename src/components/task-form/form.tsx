@@ -60,12 +60,11 @@ const TaskForm: FC = (): ReactElement => {
             <form>
                 <Stack spacing={2}>
                     <Typography variant="h6">Create A Task</Typography>
-                    <TaskNameInputField dispatch={dispatch} data={taskName} />
+                    
+                    <TaskNameInputField />
                     <TaskDescription
-                        dispatch={dispatch}
-                        data={taskDescription}
                     />
-                    <TaskDateField dispatch={dispatch} data={dueDate} />
+                    <TaskDateField  />
                     <Stack spacing={2} direction="row">
                         <TaskSelectBox
                             labelName={'Status'}
