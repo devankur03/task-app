@@ -1,22 +1,24 @@
 pipeline {
      agent any
+     tools {nodejs "node"}
      stages {
          stage("Unit Tests") {
             steps {
-                sh " npm install"
-                sh " npm run test"
+                sh "node -v"
+                sh "npm install"
+                sh "npm run test"
             }
         }
         stage("End2End Tests") {
             steps {
-                sh " npm install"
-                sh " npm run e2e:ci"
+                sh "npm install"
+                sh "npm run e2e:ci"
             }
         }
         stage("Build") {
             steps {
-                sh " npm install"
-                sh " npm run build"
+                sh "npm install"
+                sh "npm run build"
             }
         }
         stage("Deploy") {
