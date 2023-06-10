@@ -6,7 +6,7 @@ describe('template spec', () => {
     beforeEach(() => {
         cy.intercept('GET', '/tasks', { fixture: 'tasks.json' });
         cy.intercept('POST', '/create', { fixture: 'createTask.json' });
-        cy.visit('http://127.0.0.1:5173/');
+        cy.visit('http://localhost:5173/');
     });
     it('Should load the page without error', () => {
         cy.get('h2').should(
@@ -33,7 +33,7 @@ describe('template spec', () => {
         cy.get('#Priority').click();
         cy.get(`[data-value="Low"]`).click();
         cy.get('#createTask').click();
-        cy.wait(500);
+        cy.wait(200);
         // cy.get(`[aria-label="Choose date"]`).click();
         //  cy.get(`[aria-colindex="10"]`).click();
         // cy.wait(200);
