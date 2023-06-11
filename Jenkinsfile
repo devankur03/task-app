@@ -23,8 +23,8 @@ pipeline {
         }
         stage("Deploy") {
             steps {
-                sh " rm -rf /var/www/jenkins-react-app"
-                sh " cp -r ${WORKSPACE}/build/ /var/www/task-app/"
+                sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
+                sh " cp -r ${WORKSPACE}/dist/ /var/www/task-app/"
             }
         }
     }
