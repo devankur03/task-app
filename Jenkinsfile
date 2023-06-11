@@ -10,9 +10,8 @@ pipeline {
             }
         }
         stage("End2End Tests") {
-            agent { docker { image 'cypress/base:latest' } }
             steps {
-                sh "npm install"
+                sh "unset DISPLAY && npm install"
                 sh "unset DISPLAY && DEBUG=cypress:* npm run e2e:ci"
             }
         }
