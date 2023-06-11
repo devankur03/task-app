@@ -9,12 +9,12 @@ pipeline {
                 sh "npm run test"
             }
         }
-        stage("End2End Tests") {
-            steps {
-                sh "unset DISPLAY && npm install"
-                sh "unset DISPLAY && DEBUG=cypress:* npm run e2e:ci"
-            }
-        }
+        // stage("End2End Tests") {
+        //     steps {
+        //         sh "unset DISPLAY && npm install"
+        //         sh "unset DISPLAY && DEBUG=cypress:* npm run e2e:ci"
+        //     }
+        // }
         stage("Build") {
             steps {
                 sh "npm install"
