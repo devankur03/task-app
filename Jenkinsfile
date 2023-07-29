@@ -23,15 +23,15 @@ pipeline {
         }
         stage("Deploy") {
             steps {
-            withCredentials([[
-                        $class: 'AmazonWebServicesCredentialsBinding',
-                        credentialsId: "deploytos3",
-                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-                ]]) {
-                // AWS Code
+            // withCredentials([[
+            //             $class: 'AmazonWebServicesCredentialsBinding',
+            //             credentialsId: "deploytos3",
+            //             accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+            //             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+            //     ]]) {   }
+                // AWS Code  arn:aws:iam::120080062333:role/test-support-jenkins
 
-                withAWS(region:'us-east-1') {
+                withAWS(region:'us-east-1',role:'test-support-jenkins', roleAccount:'120080062333', ) {
                 sh "echo inside aws function"
                 sh "ls ${WORKSPACE}"
                 s3Upload(file: "${WORKSPACE}/dist", bucket:'test-bucket-av03')
@@ -39,7 +39,7 @@ pipeline {
                 
               
               
-                }
+             
                 // sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
                 // sh " cp -r ${WORKSPACE}/dist/ /var/www/task-app/"
 
