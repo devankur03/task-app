@@ -24,18 +24,27 @@ pipeline {
         stage("Deploy") {
             steps {
 
+                try{
+
                 withCredentials([[
-                $class: 'AmazonWebServicesCredentialsBinding',
-                credentialsId: "deploytos3",
-                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: "deploytos3",
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                 ]]) {
                 // AWS Code
                 sh "echo inside aws function"
-                    sh "aws s3 ls"
+                sh "ls ${WORKSPACE}"
+                sh "aws s3 ls"
                 }
                 // sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
                 // sh " cp -r ${WORKSPACE}/dist/ /var/www/task-app/"
+
+                } catch(err) {
+                      sh "echo error in sending artifacts to s3"
+      }
+
+               
             }
         }
     }
