@@ -34,7 +34,7 @@ pipeline {
                 sh "echo inside aws function"
                 sh "ls ${WORKSPACE}"
               //  aws("s3 ls")
-                s3Upload(file: "${WORKSPACE}/dist/*", bucket:'test-bucket-av03', path:'/')
+                s3Upload(file: "${WORKSPACE}/dist", bucket:'test-bucket-av03')
               
                 }
                 // sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
