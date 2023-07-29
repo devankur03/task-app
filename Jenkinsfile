@@ -31,7 +31,7 @@ pipeline {
             //     ]]) {   }
                 // AWS Code  arn:aws:iam::120080062333:role/test-support-jenkins
 
-                 withAWS(role: 'test-support-jenkins', roleAccount: '120080062333', region:'us-east-1', useNode: true) {
+                 withAWS(role: 'test-support-jenkins', roleAccount: '120080062333', region:'us-east-1', principalArn:"arn:aws:iam::120080062333:role/test-support-jenkins") {
     // do something
      sh "echo inside aws function"
                 sh "ls ${WORKSPACE}"
