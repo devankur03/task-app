@@ -22,12 +22,8 @@ pipeline {
             }
         }
         stage("Deploy") {
-            
-              
-
-                try{
-
-                withCredentials([[
+            steps {
+            withCredentials([[
                         $class: 'AmazonWebServicesCredentialsBinding',
                         credentialsId: "deploytos3",
                         accessKeyVariable: 'AWS_ACCESS_KEY_ID',
@@ -41,11 +37,9 @@ pipeline {
                 // sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
                 // sh " cp -r ${WORKSPACE}/dist/ /var/www/task-app/"
 
-                } catch(err) {
-                      sh "echo error in sending artifacts to s3"
-      }
 
                
+            }
         }
     }
 }
