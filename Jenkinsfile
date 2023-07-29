@@ -23,8 +23,19 @@ pipeline {
         }
         stage("Deploy") {
             steps {
-                sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
-                sh " cp -r ${WORKSPACE}/dist/ /var/www/task-app/"
+
+                withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: "deploytos3",
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                ]]) {
+                // AWS Code
+                sh "echo inside aws function"
+                    sh "aws s3 ls"
+                }
+                // sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
+                // sh " cp -r ${WORKSPACE}/dist/ /var/www/task-app/"
             }
         }
     }
