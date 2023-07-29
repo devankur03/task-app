@@ -30,11 +30,12 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                 ]]) {
                 // AWS Code
+                
                 sh "echo inside aws function"
                 sh "ls ${WORKSPACE}"
               //  aws("s3 ls")
                 s3Upload(file:'${WORKSPACE}/dist/ ', bucket:'test-bucket-av03', path:'/')
-               // sh "aws s3 ls"
+              
                 }
                 // sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
                 // sh " cp -r ${WORKSPACE}/dist/ /var/www/task-app/"
