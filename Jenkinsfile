@@ -32,7 +32,8 @@ pipeline {
                 // AWS Code
                 sh "echo inside aws function"
                 sh "ls ${WORKSPACE}"
-                sh "aws s3 ls"
+                AWS("s3 ls")
+               // sh "aws s3 ls"
                 }
                 // sh " rm -rf /var/www/task-app | mkdir /var/www/task-app"
                 // sh " cp -r ${WORKSPACE}/dist/ /var/www/task-app/"
