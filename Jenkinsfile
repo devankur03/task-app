@@ -23,6 +23,8 @@ pipeline {
         }
         stage("Deploy") {
             
+              
+
                 try{
 
                 withCredentials([[
@@ -44,7 +46,6 @@ pipeline {
       }
 
                
-            
         }
     }
 }
