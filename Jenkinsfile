@@ -31,11 +31,18 @@ pipeline {
             //     ]]) {   }
                 // AWS Code  arn:aws:iam::120080062333:role/test-support-jenkins
 
-                withAWS(region:'us-east-1',role:'test-support-jenkins', roleAccount:'120080062333', ) {
-                sh "echo inside aws function"
+                 withAWS(role: 'test-support-jenkins', roleAccount: '120080062333', region:'us-east-1', useNode: true) {
+    // do something
+     sh "echo inside aws function"
                 sh "ls ${WORKSPACE}"
                 s3Upload(file: "${WORKSPACE}/dist", bucket:'test-bucket-av03')
-}
+  }
+
+//                 withAWS(region:'us-east-1',role:'test-support-jenkins', roleAccount:'120080062333', ) {
+//                 sh "echo inside aws function"
+//                 sh "ls ${WORKSPACE}"
+//                 s3Upload(file: "${WORKSPACE}/dist", bucket:'test-bucket-av03')
+// }
                 
               
               
