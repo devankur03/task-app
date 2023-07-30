@@ -32,7 +32,7 @@ pipeline {
                 // AWS Code  arn:aws:iam::120080062333:role/test-support-jenkins
                 // role: 'test-support-jenkins', roleAccount: '120080062333', region:'us-east-1', duration: 900, roleSessionName: 'ankurv'
 
-                 withAWS(credentials:'deploytos3') {
+                 withAWS(credentials:'deploytos3',region:'us-east-1') {
     // do something deploytos3
      sh "echo inside aws function"
                 sh "ls ${WORKSPACE}"
