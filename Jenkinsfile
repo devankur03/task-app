@@ -30,9 +30,10 @@ pipeline {
             //             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
             //     ]]) {   }
                 // AWS Code  arn:aws:iam::120080062333:role/test-support-jenkins
+                // role: 'test-support-jenkins', roleAccount: '120080062333', region:'us-east-1', duration: 900, roleSessionName: 'ankurv'
 
-                 withAWS(role: 'test-support-jenkins', roleAccount: '120080062333', region:'us-east-1', duration: 900, roleSessionName: 'ankurv') {
-    // do something
+                 withAWS(credentials:'deploytos3') {
+    // do something deploytos3
      sh "echo inside aws function"
                 sh "ls ${WORKSPACE}"
                 s3Upload(file: "${WORKSPACE}/dist", bucket:'test-bucket-av03')
