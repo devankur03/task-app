@@ -1,0 +1,12 @@
+platform: linux
+image_resource:
+  type: registry-image
+  source:
+    repository: https://hub.docker.com/r/amazon/aws-cli
+    tag: 2.13.9
+    username: test
+    password: hello
+inputs:
+  -name: repository
+run:
+  path: repository/concourse/task.sh

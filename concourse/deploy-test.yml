@@ -1,0 +1,70 @@
+resources:
+- name: task-app-repo
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/devankur03/task-app.git 
+
+- name: node-image
+  type: registry-image
+  source:
+    repository: node
+    tag: 18
+
+jobs:
+- name: e2e-test-deployment
+  public: true
+  plan:
+  - get: node-image
+  - get: task-app-repo
+    trigger: true
+  - task: install
+    image: node-image
+    config:
+      inputs:
+      - name: task-app-repo
+      outputs:
+      - name: dependencies
+        path: task-app-repo/node_modules
+      platform: linux
+      run:
+        path: npm
+        args: ["install"]
+        dir: task-app-repo
+  - task: test
+    image: node-image
+    config:
+      inputs:
+      - name: task-app-repo
+      - name: dependencies
+        path: task-app-repo/node_modules
+      platform: linux
+      run:
+        path: npm
+        args: ["run", "test"]
+        dir: task-app-repo
+  - task: build
+    image: node-image
+    config:
+      inputs:
+      - name: task-app-repo
+      - name: dependencies
+        path: task-app-repo/node_modules
+      outputs:
+      - name: dist
+      - name: build
+        path: task-app-repo/dist
+      platform: linux
+      run:
+        path: npm
+        args: ["run", "build"]
+        dir: task-app-repo
+  - task: deploy
+    input_mapping:
+      repository: task-app-repo
+    file: task-app-repo/concourse/task.yml
+    params:
+     S3_BUCKET: task-av03-web
+     DESTINATION_FOLDER: /
+     SOURCE_FOLDER: task-app-repo
+            
