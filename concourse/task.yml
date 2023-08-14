@@ -7,6 +7,6 @@ image_resource:
     username: test
     password: hello
 inputs:
-  -name: repository
+  - name: repository
 run:
   path: repository/concourse/task.sh
