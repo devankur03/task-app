@@ -1,0 +1,39 @@
+resources:
+- name: task-repo
+  type: git
+  icon: github
+  source:
+    branch: TA-09-CONCOURSE-CI-TEST
+    uri: https://github.com/devankur03/task-app.git 
+
+- name: artifactoty
+  type: registry-image
+  icon: docker
+  source:
+    repository: https://hub.docker.com/r/amazon/aws-cli
+    tag: latest
+
+jobs:
+- name: build-and-push
+  plan:
+    - get: task-repo
+    - task: build-aws-cli-image
+      privilaged: true
+      config:
+        platform: linux
+        image_resource:
+          type: registry-image
+          source:
+            repository: concourse/oci-build-task
+        inputs:
+          - name: task-repo
+        outputs:
+          - name: image
+        params:
+          CONTEXT: task-repo/concourse/docker-aws-cli
+        run:
+          path: docker pull && build
+    - put: artifactoty
+      params:
+        image: image/image.tar
+ 
