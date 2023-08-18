@@ -28,4 +28,6 @@ export AWS_SECRET_ACCESS_KEY="$4"
 
 aws --version
 ls task-app-repo
-aws s3api list-buckets 
+# aws s3api list-buckets 
+
+aws s3 sync task-app-repo/dist/ s3://"$1"
