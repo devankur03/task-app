@@ -18,8 +18,14 @@ echo "The file name: $0."
 echo "The first argument is $1."
 echo "The second argument is $2."
 echo "The third argument is $3."
+echo "The Fourth argument is $4."
+echo "The Fivth argument is $5."
 
 echo "seems all goood lets see"
 
+export AWS_ACCESS_KEY_ID="$3"
+export AWS_SECRET_ACCESS_KEY="$4"
+
 aws --version
 ls task-app-repo
+aws s3api list-buckets 

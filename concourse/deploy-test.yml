@@ -90,7 +90,7 @@ jobs:
           repository: ((docker-hub-username))/aws-container
       run:
         path: /bin/sh
-        args: ['task-app-repo/concourse/task.sh','task-av03-web',"Repo-name-taskapp"]
+        args: ['task-app-repo/concourse/task.sh','task-av03-web',"Repo-name-taskapp",((access_key)),((secret_key)),"hello"]
       # run:
       #     path: /bin/sh
       #     args:
