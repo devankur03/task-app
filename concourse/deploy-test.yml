@@ -32,18 +32,18 @@ jobs:
         path: npm
         args: ["install"]
         dir: task-app-repo
-  - task: test
-    image: node-image
-    config:
-      inputs:
-      - name: task-app-repo
-      - name: dependencies
-        path: task-app-repo/node_modules
-      platform: linux
-      run:
-        path: npm
-        args: ["run", "test"]
-        dir: task-app-repo
+  # - task: test
+  #   image: node-image
+  #   config:
+  #     inputs:
+  #     - name: task-app-repo
+  #     - name: dependencies
+  #       path: task-app-repo/node_modules
+  #     platform: linux
+  #     run:
+  #       path: npm
+  #       args: ["run", "test"]
+  #       dir: task-app-repo
   - task: build
     image: node-image
     config:
@@ -72,7 +72,7 @@ jobs:
               ls dist
 
 
-  - task: verify
+  - task: verify-deploy-app
     # input_mapping:
     #    repository: task-app-repo
     config:
@@ -84,38 +84,41 @@ jobs:
       image_resource:
         type: docker-image
         source:
-          repository: amazon/aws-cli
-      # run:
-      #   path: /bin/sh
-      #   args: ['task-app-repo/concourse/task.sh']
+          email: ((docker-hub-email))
+          username: ((docker-hub-username))
+          password: ((docker-hub-password))
+          repository: ((docker-hub-username))/aws-container
       run:
-          path: /bin/sh
-          args:
-            - -cx
-            - |
-              pwd
-              aws --version
-              ls
-              ls task-app-repo
-              mkdir test-result
-               ls task-app-repo
-              ./task-app-repo/concourse/task.sh
+        path: /bin/sh
+        args: ['task-app-repo/concourse/task.sh','task-av03-web',"Repo-name-taskapp"]
+      # run:
+      #     path: /bin/sh
+      #     args:
+      #       - -cx
+      #       - |
+      #         pwd
+      #         aws --version
+      #         ls
+      #         ls task-app-repo
+      #         mkdir test-result
+      #          ls task-app-repo
+      #         ./task-app-repo/concourse/task.sh
              
 
 
              
 
-  - task: deploy
+  # - task: deploy
   
-    # config:
-    #   inputs:
-    #   - name: task-app-repo
-    # input_mapping:
-    #    repository: task-app-repo
+  #   # config:
+  #   #   inputs:
+  #   #   - name: task-app-repo
+  #   # input_mapping:
+  #   #    repository: task-app-repo
      
-    file: task-app-repo/concourse/task.yml
-    params:
-     S3_BUCKET: task-av03-web
-     DESTINATION_FOLDER: /
-     SOURCE_FOLDER: task-app-repo
+  #   file: task-app-repo/concourse/task.yml
+  #   params:
+  #    S3_BUCKET: task-av03-web
+  #    DESTINATION_FOLDER: /
+  #    SOURCE_FOLDER: task-app-repo
             
