@@ -16,3 +16,5 @@ exit 1
 fi
 
 echo "seems all goood"
+aws --version
+ls task-app-repo
