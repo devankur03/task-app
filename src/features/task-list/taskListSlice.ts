@@ -27,7 +27,7 @@ const initialState: TaskDetailState = {
     filterStatus: '',
 };
 
-const updateTaskCountValues = () => {};
+
 
 export const taskListSlice = createSlice({
     name: 'taskList',
