@@ -16,3 +16,7 @@ export const updateTask = (id: string, updateParams: any) => {
 export const deleteTask = (id: string) => {
     return axios.delete(`${API_END_POINT}/delete/${id}`);
 };
+
+export const getNewTask = (id: string) => {
+    return axios.get(`${API_END_POINT}/getNewTask/`);
+};
